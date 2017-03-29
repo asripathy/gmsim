@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="index.css">
 <body>
 
-<div ng-app="">
-  <p>Name: <input type="text" ng-model="name"></p>
-  <p ng-bind="name"></p>
+<div ng-app="gmsim" ng-controller="gmCtrl">
+  <p>Welcome to the Draft!</p>
+  <p> Your draft position is: {{draftSlot}} </p>
+  <div ng-repeat="n in selections">
+    <!-- <div ng-value = "false" ng-class = "{selected: true}" ng-click = "isSelected = true">
+      {{n}}
+    </div> -->
+    <draft-pick  ></draft-pick>
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
