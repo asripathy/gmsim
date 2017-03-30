@@ -1,7 +1,19 @@
 var gmApp = angular.module('gmsim', []);
 
 gmApp.controller('gmCtrl', function($scope) {
+
     $scope.year = 2017;
+    /*---------------------------TEAM CODE-------------------------------*/
+    $scope.startingGuard;
+    $scope.startingWing;
+    $scope.startingFlex;
+    $scope.startingForward;
+    $scope.startingBig;
+    $scope.sixthMan;
+
+    $scope.initializeTeam = function(){
+      
+    }
 
     /*---------------------------DRAFT CODE-------------------------------*/
     //Draft Slot information

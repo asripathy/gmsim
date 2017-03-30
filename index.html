@@ -6,35 +6,46 @@
 <body>
 
     <div ng-app="gmsim" ng-controller="gmCtrl">
-        <div class="draftContainer" ng-show="draftComplete == false">
-            <div ng-show="draftActive == false">
-                <p id = "title"> Welcome to the {{year}} NBA Draft</p>
-                <p id = "subtitle"> You own the #{{draftSlot}} and #{{draftSlot + 30}} overall picks in the draft. </p>
-                <!-- <form name="slotSelect">
+        <div class="draft">
+            <div class="draftContainer" ng-show="draftComplete == false">
+                <div ng-show="draftActive == false">
+                    <p id="title"> Welcome to the {{year}} NBA Draft</p>
+                    <p id="subtitle"> You own the #{{draftSlot}} and #{{draftSlot + 30}} overall picks in the draft. </p>
+                    <!-- <form name="slotSelect">
                     <p> Choose Draft Slot </p>
                     <input name="slotChoice" type="number" min="0" max="30" ng-model="draftSlot" ng-change="validateSlot()" required></input>
                 </form> -->
-                <!-- <div ng-show="validSlot == false">
+                    <!-- <div ng-show="validSlot == false">
                     <p> Please enter a valid slot (1-30) </p>
                 </div> -->
-                <button ng-show="validSlot == true" ng-click="generatePicks(draftSlot)"> Start Draft </button>
-            </div>
-            <button ng-show="draftActive == true && roundActive == false" ng-click="generatePicks( draftSlot + 30)"> Proceed to Next Round </button>
-            <div ng-show="roundActive == true">Your draft position is: {{draftSlot}}</div>
-            <div ng-repeat="pick in playerOptions" ng-show="roundActive == true">
-                <div ng-click="markSelected(pick)" class = "selectable">
-                    Possible Draft Pick
-                    <p> Position: {{pick.position}} </p>
-                    <p> Risk: {{pick.risk}} </p>
-                    <p> Upside: {{pick.upside}} </p>
+                    <button ng-show="validSlot == true" ng-click="generatePicks(draftSlot)"> <span> Start Draft </span> </button>
+                </div>
+                <button ng-show="draftActive == true && roundActive == false" ng-click="generatePicks( draftSlot + 30)"> <span> Proceed to Next Round </span> </button>
+                <div ng-show="roundActive == true"> <span> Your draft position is: {{draftSlot}} </span> </div>
+                <div ng-repeat="pick in playerOptions" ng-show="roundActive == true">
+                    <div ng-click="markSelected(pick)" class="selectable">
+                        <span> Possible Draft Pick </span>
+                        <p> Position: {{pick.position}} </p>
+                        <p> Risk: {{pick.risk}} </p>
+                        <p> Upside: {{pick.upside}} </p>
+                    </div>
                 </div>
             </div>
+            <div ng-show="draftActive == true && roundActive == false">
+                <p> You have selected: </p>
+                <p> {{selectedPlayer.type}} </p>
+            </div>
+            <button ng-show="draftComplete == true"> <span> Proceed to Team </span> </button>
         </div>
-        <div ng-show="draftActive == true && roundActive == false">
-            <p> You have selected: </p>
-            <p> {{selectedPlayer.type}} </p>
+        <div class = "teamDisplay">
+          <p> PG: </p>
+          <p> SG: </p>
+          <p> SF: </p>
+          <p> PF: </p>
+          <p> C: </p>
+
+
         </div>
-        <button ng-show="draftComplete == true"> Proceed to Team </button>
 
     </div>
 
