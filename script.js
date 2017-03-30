@@ -32,26 +32,27 @@ function getPlayersAttributes(index) {
     arr = [];
     for (var i = 1 ; i <= 3; i++) {
         playerAttributes = {
-            risk : Math.random() * 50,
-            upside : (80 / Math.pow(index, 0.25)) + (Math.random() * 25) - 5
+            risk : Math.round(Math.random() * 50),
+            upside : Math.round((80 / Math.pow(index, 0.25)) + (Math.random() * 25) - 5)
         };
-        playerAttributes.type = getPlayerType(playerAttributes['upside']);
+        playerAttributes.type = getPlayerType(playerAttributes.upside, playerAttributes.risk);
         arr.push(playerAttributes);
         console.log(playerAttributes);
     }
     return arr;
 }
 
-function getPlayerType(upside) {
-    if (upside > 90)
+function getPlayerType(upside, risk) {
+    val = upside - (0.7 * risk);
+    if (val > 75)
         return "Superstar";
-    else if (upside > 80)
+    else if (val > 65)
         return "Star";
-    else if (upside > 70)
+    else if (val > 55)
         return "Stud";
-    else if (upside > 60)
+    else if (val > 45)
         return "Role-player";
-    else if (upside > 50)
+    else if (val > 25)
         return "Specialist";
     else
         return "Bust";
