@@ -26,14 +26,14 @@ gmApp.controller('gmCtrl', function($scope) {
 
 });
 
-getPlayersAttributes();
+getPlayersAttributes(1);
 
-function getPlayersAttributes() {
+function getPlayersAttributes(index) {
     arr = [];
     for (var i = 1 ; i <= 3; i++) {
         playerAttributes = {
             risk : Math.random() * 50,
-            upside : (80 / Math.pow(i, 0.25)) + (Math.random() * 25) - 5
+            upside : (80 / Math.pow(index, 0.25)) + (Math.random() * 25) - 5
         };
         playerAttributes.type = getPlayerType(playerAttributes['upside']);
         arr.push(playerAttributes);
