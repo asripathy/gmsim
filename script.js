@@ -1,8 +1,11 @@
 var gmApp = angular.module('gmsim', []);
 
 gmApp.controller('gmCtrl', function($scope) {
+    $scope.year = 2017;
+
+    /*---------------------------DRAFT CODE-------------------------------*/
     //Draft Slot information
-    $scope.draftSlot = 3;
+    $scope.draftSlot = 21;
     $scope.validSlot = true;
 
     //Information on players available and selected
@@ -14,6 +17,8 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.draftComplete = false;
     $scope.draftActive = false;
     $scope.roundActive = false;
+
+    $scope.team = [];
 
     //Ensures valid slot offered
     $scope.validateSlot = function(){
@@ -35,11 +40,14 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.markSelected = function(pick){
       if($scope.roundActive == true){
         $scope.selectedPlayer = pick;
+        $scope.team.push(pick);
         $scope.roundActive = false;
-        if($scope.draftSlot > 30)
+        if($scope.draftSlot > 30){
           $scope.draftComplete = true;
+        }
       }
     }
+    /*---------------------------END DRAFT CODE-------------------------------*/
 });
 
 /*---------------------------PLAYER ATTRIBUTES CODE-------------------------------*/

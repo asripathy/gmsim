@@ -1,15 +1,17 @@
-.selected {
-  width: 300px;
-  border: 25px solid green;
-  padding: 25px;
-  margin: 25px;
+#title {
+  text-align: center;
+  color: #59CC59;
+  font-weight: bold;
+  font-size: 30px;
+  text-decoration-style: solid;
+  font-family: sans-serif;
 }
-
-.notSelected {
-  width: 300px;
-  border: 25px solid grey;
-  padding: 25px;
-  margin: 25px;
+#subtitle{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration-style: solid;
+  font-family: sans-serif;
 }
 
 .selectable {
