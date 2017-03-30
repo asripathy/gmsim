@@ -4,3 +4,17 @@
   padding: 25px;
   margin: 25px;
 }
+
+.notSelected {
+  width: 300px;
+  border: 25px solid grey;
+  padding: 25px;
+  margin: 25px;
+}
+
+.selectable {
+  width: 300px;
+  border: 25px solid blue;
+  padding: 25px;
+  margin: 25px;
+}

@@ -6,9 +6,16 @@
 
 <div ng-app="gmsim" ng-controller="gmCtrl">
   <p>Welcome to the Draft!</p>
-  <p> Your draft position is: {{draftSlot}} </p>
-  <div ng-repeat="pick in options">
-    <div ng-click = "markSelected(pick)" ng-class = "{selected: selectedIndex == pick}"> Possible Draft Pick</div>
+  <p> Choose Draft Slot </p>
+  <form name = "slotSelect">
+    <input name = "slotChoice" type = "number" min = "0" max = "30" ng-model = "draftSlot" ng-change = "validateSlot()"></input>
+  </form>
+  <div ng-hide = "validSlot == false">
+    <p>Your draft position is: {{draftSlot}}</p>
+  </div>
+  <button ng-hide = "validSlot == false" ng-click = "generatePicks()"> Start Draft </button>
+  <div ng-repeat="pick in options" ng-hide = "draftStarted == false">
+    <div ng-click = "markSelected(pick)" ng-class = "{'selectable' : selectedIndex == -1, 'selected': selectedIndex == pick, 'notSelected': selectedIndex != pick}"> Possible Draft Pick</div>
   </div>
 </div>
 <script src="script.js"></script>
