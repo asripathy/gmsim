@@ -8,7 +8,7 @@
   <p>Welcome to the Draft!</p>
   <p> Choose Draft Slot </p>
   <form name = "slotSelect">
-    <input name = "slotChoice" type = "number" min = "0" max = "30" ng-model = "draftSlot" ng-change = "validateSlot()"></input>
+    <input name = "slotChoice" type = "number" min = "0" max = "30" ng-model = "draftSlot" ng-change = "validateSlot()" required></input>
   </form>
   <div ng-hide = "validSlot == false">
     <p>Your draft position is: {{draftSlot}}</p>
