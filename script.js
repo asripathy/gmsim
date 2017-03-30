@@ -19,3 +19,34 @@ gmApp.directive("draftPick", function() {
 
     };
 });
+
+getPlayersAttributes();
+
+function getPlayersAttributes() {
+    arr = [];
+    for (var i = 1 ; i <= 3; i++) {
+        playerAttributes = {
+            risk : Math.random() * 50,
+            upside : (80 / Math.pow(i, 0.25)) + (Math.random() * 25) - 5
+        };
+        playerAttributes.type = getPlayerType(playerAttributes['upside']);
+        arr.push(playerAttributes);
+        console.log(playerAttributes);
+    }
+    return arr;
+}
+
+function getPlayerType(upside) {
+    if (upside > 90)
+        return "superstar";
+    else if (upside > 80)
+        return "star";
+    else if (upside > 70)
+        return "stud";
+    else if (upside > 60)
+        return "role-player";
+    else if (upside > 50)
+        return "specialist";
+    else
+        return "bust";
+}
