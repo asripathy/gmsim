@@ -4,8 +4,10 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.draftSlot = 3;
     $scope.validSlot = true;
     $scope.draftStarted = false;
-    $scope.options;
-    $scope.selectedIndex = -1;
+    $scope.options = [0, 1, 2];
+    $scope.playerOptions;
+    $scope.drafted = false;
+    $scope.selectedPlayer;
     $scope.validateSlot = function(){
       if($scope.slotSelect.slotChoice.$valid){
         $scope.validSlot = true;
@@ -16,16 +18,15 @@ gmApp.controller('gmCtrl', function($scope) {
     }
     $scope.generatePicks = function(){
       $scope.draftStarted = true;
-      $scope.options = getPlayersAttributes($scope.draftSlot);
+      $scope.playerOptions = getPlayersAttributes($scope.draftSlot);
     }
-    $scope.markSelected = function(number){
-      if($scope.selectedIndex == -1){
-        $scope.selectedIndex = number;
+    $scope.markSelected = function(pick){
+      if($scope.drafted == false){
+        $scope.drafted = true;
+        $scope.selectedPlayer = pick;
       }
     }
 });
-
-getPlayersAttributes(1);
 
 function getPlayersAttributes(index) {
     arr = [];
@@ -43,15 +44,15 @@ function getPlayersAttributes(index) {
 
 function getPlayerType(upside) {
     if (upside > 90)
-        return "superstar";
+        return "Superstar";
     else if (upside > 80)
-        return "star";
+        return "Star";
     else if (upside > 70)
-        return "stud";
+        return "Stud";
     else if (upside > 60)
-        return "role-player";
+        return "Role-player";
     else if (upside > 50)
-        return "specialist";
+        return "Specialist";
     else
-        return "bust";
+        return "Bust";
 }

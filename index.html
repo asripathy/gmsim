@@ -6,16 +6,24 @@
 
 <div ng-app="gmsim" ng-controller="gmCtrl">
   <p>Welcome to the Draft!</p>
-  <p> Choose Draft Slot </p>
-  <form name = "slotSelect">
+  <form name = "slotSelect" ng-hide = "draftStarted == true">
+    <p> Choose Draft Slot </p>
     <input name = "slotChoice" type = "number" min = "0" max = "30" ng-model = "draftSlot" ng-change = "validateSlot()" required></input>
   </form>
-  <div ng-hide = "validSlot == false">
+  <div ng-hide = "validSlot == false || draftStarted == true">
     <p>Your draft position is: {{draftSlot}}</p>
   </div>
-  <button ng-hide = "validSlot == false" ng-click = "generatePicks()"> Start Draft </button>
-  <div ng-repeat="pick in options" ng-hide = "draftStarted == false">
-    <div ng-click = "markSelected(pick)" ng-class = "{'selectable' : selectedIndex == -1, 'selected': selectedIndex == pick, 'notSelected': selectedIndex != pick}"> Possible Draft Pick</div>
+  <button ng-hide = "validSlot == false || draftStarted == true" ng-click = "generatePicks()"> Start Draft </button>
+  <div ng-repeat="pick in playerOptions" ng-hide = "draftStarted == false || drafted == true">
+    <div ng-click = "markSelected(pick)" ng-class = "{'selectable' : selectedIndex == -1, 'selected': selectedIndex == pick, 'notSelected': selectedIndex != pick}">
+      Possible Draft Pick
+      <p> Risk: {{pick.risk}} </p>
+      <p> Upside: {{pick.upside}} </p>
+    </div>
+  </div>
+  <div ng-hide = "drafted == false">
+    <p> You have selected: </p>
+    <p> {{selectedPlayer.type}} </p>
   </div>
 </div>
 <script src="script.js"></script>
