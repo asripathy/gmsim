@@ -1,29 +1,43 @@
 var gmApp = angular.module('gmsim', []);
 
 gmApp.controller('gmCtrl', function($scope) {
+    //Draft Slot information
     $scope.draftSlot = 3;
     $scope.validSlot = true;
-    $scope.draftStarted = false;
+
+    //Information on players available and selected
     $scope.options = [0, 1, 2];
     $scope.playerOptions;
-    $scope.drafted = false;
     $scope.selectedPlayer;
+
+    //Information on state of draft
+    $scope.draftComplete = false;
+    $scope.draftActive = false;
+    $scope.roundActive = false;
+
+    //Ensures valid slot offered
     $scope.validateSlot = function(){
-      if($scope.slotSelect.slotChoice.$valid){
+      if($scope.slotSelect.slotChoice.$valid)
         $scope.validSlot = true;
-      }
-      else{
+      else
         $scope.validSlot = false;
-      }
     }
-    $scope.generatePicks = function(){
-      $scope.draftStarted = true;
+
+    //Generates the available picks
+    $scope.generatePicks = function(draftSlot){
+      $scope.draftActive = true;
+      $scope.roundActive = true;
+      $scope.draftSlot = draftSlot;
       $scope.playerOptions = getPlayersAttributes($scope.draftSlot);
     }
+
+    //Performs the actual selection
     $scope.markSelected = function(pick){
-      if($scope.drafted == false){
-        $scope.drafted = true;
+      if($scope.roundActive == true){
         $scope.selectedPlayer = pick;
+        $scope.roundActive = false;
+        if($scope.draftSlot > 30)
+          $scope.draftComplete = true;
       }
     }
 });

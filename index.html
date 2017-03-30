@@ -5,27 +5,36 @@
 <body>
 
 <div ng-app="gmsim" ng-controller="gmCtrl">
-  <p>Welcome to the Draft!</p>
-  <form name = "slotSelect" ng-hide = "draftStarted == true">
-    <p> Choose Draft Slot </p>
-    <input name = "slotChoice" type = "number" min = "0" max = "30" ng-model = "draftSlot" ng-change = "validateSlot()" required></input>
-  </form>
-  <div ng-hide = "validSlot == false || draftStarted == true">
-    <p>Your draft position is: {{draftSlot}}</p>
-  </div>
-  <button ng-hide = "validSlot == false || draftStarted == true" ng-click = "generatePicks()"> Start Draft </button>
-  <div ng-repeat="pick in playerOptions" ng-hide = "draftStarted == false || drafted == true">
-    <div ng-click = "markSelected(pick)" ng-class = "{'selectable' : selectedIndex == -1, 'selected': selectedIndex == pick, 'notSelected': selectedIndex != pick}">
-      Possible Draft Pick
-      <p> Risk: {{pick.risk}} </p>
-      <p> Upside: {{pick.upside}} </p>
+    <div class = "draftContainer" ng-show = "draftComplete == false">
+      <div ng-show = "draftActive == false">
+          <p> Welcome to the Draft!</p>
+        <form name = "slotSelect">
+          <p> Choose Draft Slot </p>
+          <input name = "slotChoice" type = "number" min = "0" max = "30" ng-model = "draftSlot" ng-change = "validateSlot()" required></input>
+        </form>
+        <p>Your draft position is: {{draftSlot}}</p>
+        <div ng-show = "validSlot == false">
+          <p> Please enter a valid slot (1-30) </p>
+        </div>
+        <button ng-show = "validSlot == true" ng-click = "generatePicks(draftSlot)"> Start Draft </button>
     </div>
-  </div>
-  <div ng-hide = "drafted == false">
-    <p> You have selected: </p>
-    <p> {{selectedPlayer.type}} </p>
-  </div>
+      <button ng-show = "draftActive == true && roundActive == false" ng-click = "generatePicks( draftSlot + 30)"> Proceed to Next Round </button>
+      <div ng-repeat="pick in playerOptions" ng-show = "roundActive == true">
+        <div ng-click = "markSelected(pick)" ng-class = "{'selectable' : selectedIndex == -1, 'selected': selectedIndex == pick, 'notSelected': selectedIndex != pick}">
+          Possible Draft Pick
+          <p> Risk: {{pick.risk}} </p>
+          <p> Upside: {{pick.upside}} </p>
+        </div>
+      </div>
+    </div>
+    <div ng-show = "draftActive == true && roundActive == false">
+      <p> You have selected: </p>
+      <p> {{selectedPlayer.type}} </p>
+    </div>
+    <button ng-show = "draftComplete == true"> Proceed to Team </button>
+
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
