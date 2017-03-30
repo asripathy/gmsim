@@ -6,7 +6,8 @@
   text-decoration-style: solid;
   font-family: sans-serif;
 }
-#subtitle{
+
+#subtitle {
   text-align: center;
   font-weight: bold;
   font-size: 20px;
@@ -19,4 +20,10 @@
   border: 25px solid blue;
   padding: 25px;
   margin: 25px;
+}
+
+.button {
+    width: 20%,
+    margin-left: 40%,
+    margin-right: 40%
 }

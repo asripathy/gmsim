@@ -61,15 +61,15 @@ function getPlayersAttributes(index) {
             upside : Math.round((90 / Math.pow(index, 0.15)) + (Math.random() * 10) - 1),
             position : positions[Math.floor(Math.random()*4)]
         };
-        playerAttributes.type = getPlayerType(playerAttributes.upside, playerAttributes.risk);
+        playerAttributes.val = getPlayersAttributes.upside - (0.25 * getPlayersAttributes.risk);
+        playerAttributes.type = getPlayerType(playerAttributes.val);
         arr.push(playerAttributes);
         console.log(playerAttributes);
     }
     return arr;
 }
 
-function getPlayerType(upside, risk) {
-    val = upside - (0.25 * risk);
+function getPlayerType(val) {
     if (val >= 87)
         return "Superstar";
     else if (val >= 77)
