@@ -43,7 +43,7 @@ gmApp.controller('gmCtrl', function($scope) {
 });
 
 /*---------------------------PLAYER ATTRIBUTES CODE-------------------------------*/
-var positions = ["gaurd", "wing", "forward", "big"];
+var positions = ["Guard", "Wing", "Forward", "Big"];
 
 function getPlayersAttributes(index) {
     arr = [];

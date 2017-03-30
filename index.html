@@ -22,6 +22,7 @@
       <div ng-repeat="pick in playerOptions" ng-show = "roundActive == true">
         <div ng-click = "markSelected(pick)" ng-class = "{'selectable' : selectedIndex == -1, 'selected': selectedIndex == pick, 'notSelected': selectedIndex != pick}">
           Possible Draft Pick
+          <p> Position: {{pick.position}} </p>
           <p> Risk: {{pick.risk}} </p>
           <p> Upside: {{pick.upside}} </p>
         </div>
