@@ -7,6 +7,10 @@
   font-family: sans-serif;
 }
 
+body {
+  font-family: sans-serif;
+}
+
 #subtitle {
   text-align: center;
   font-weight: bold;
@@ -16,24 +20,27 @@
 }
 
 .selectable {
-  width: 300px;
-  border: 25px solid #4CAF50;
-  padding: 15px;
+  width: 21%;
+  border: 15px solid #4CAF50;
+  padding: 1px;
   margin: 15px;
   float: left;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .selectable:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.pickName {
-  margin: 10px;
+.cardText {
+  padding: 5px;
   text-align: center;
+}
+
+.pickName {
   font-weight: bold;
 }
 
@@ -43,21 +50,30 @@
 }
 
 .button {
-    background-color: white;
-    border: none;
-    color: #4CAF50;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 2px solid #4CAF50;
-    -webkit-transition-duration: 0.4s;
+  background-color: white;
+  border: none;
+  color: #4CAF50;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 2px solid #4CAF50;
+  -webkit-transition-duration: 0.4s;
 }
 
 .button:hover {
-    background-color: #4CAF50; /* Green */
-    color: white;
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.draftPos {
+  font-family: Gill Sans, Verdana;
+  
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
