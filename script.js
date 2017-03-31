@@ -11,14 +11,14 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.startingBig;
     $scope.sixthMan;
 
-    var playerTypes = ["Stud", "Role-player", "Role-player", "Role-player", "Role-player", "Specialist"]
+    var playerTypes = ["Stud", "Role-player", "Role-player", "Role-player", "Role-player"];
     $scope.initializeTeam = function(){
         $scope.startingGuard = getDefaultPlayer("Guard", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
         $scope.startingWing = getDefaultPlayer("Wing", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
         $scope.startingForward = getDefaultPlayer("Forward", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
         $scope.startingBig = getDefaultPlayer("Big", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
         $scope.startingFlex = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
-        $scope.sixthMan = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.sixthMan = getDefaultPlayer("Specialist", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
     }
     $scope.initializeTeam();
 
