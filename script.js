@@ -12,7 +12,84 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.sixthMan;
 
     $scope.initializeTeam = function(){
-      
+
+    }
+
+    $scope.addToTeam = function(player){
+      var added = false;
+      var flexPossible = false;
+      if(player.val > $scope.startingFlex.val ){
+        flexPossible = true;
+      }
+      if(player.position == "Guard"){
+        if(player.val > $scope.startingGuard.val){
+          added = true;
+          if(!flexPossible){
+            $scope.startingGuard = player;
+          }
+          else{
+            if($scope.startingFlex.val < $scope.startingGuard.val){
+              $scope.startingFlex = player;
+            }
+            else{
+              $scope.startingGuard = player;
+            }
+          }
+        }
+      }
+      if(player.position == "Wing"){
+        if(player.val > $scope.startingWing.val){
+          added = true;
+          if(!flexPossible){
+            $scope.startingWing = player;
+          }
+          else{
+            if($scope.startingFlex.val < $scope.startingWing.val){
+              $scope.startingFlex = player;
+            }
+            else{
+              $scope.startingWing = player;
+            }
+          }
+        }
+      }
+      if(player.position == "Forward"){
+        if(player.val > $scope.startingForward.val){
+          added = true;
+          if(!flexPossible){
+            $scope.startingForward = player;
+          }
+          else{
+            if($scope.startingFlex.val < $scope.startingForward.val){
+              $scope.startingFlex = player;
+            }
+            else{
+              $scope.startingForward = player;
+            }
+          }
+        }
+      }
+      if(player.position == "Big"){
+        if(player.val > $scope.startingBig.val){
+          added = true;
+          if(!flexPossible){
+            $scope.startingBig = player;
+          }
+          else{
+            if($scope.startingFlex.val < $scope.startingBig.val){
+              $scope.startingFlex = player;
+            }
+            else{
+              $scope.startingBig = player;
+            }
+          }
+        }
+      }
+      if(!added){
+        if(player.val > $scope.sixthMan.val){
+          $scope.sixthMan = player;
+        }
+      }
     }
 
     /*---------------------------DRAFT CODE-------------------------------*/
@@ -30,7 +107,7 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.draftActive = false;
     $scope.roundActive = false;
 
-    $scope.team = [];
+    // $scope.team = [];
 
     //Ensures valid slot offered
     $scope.validateSlot = function(){
@@ -52,7 +129,8 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.markSelected = function(pick){
       if($scope.roundActive == true){
         $scope.selectedPlayer = pick;
-        $scope.team.push(pick);
+        $scope.addToTeam(pick);
+        // $scope.team.push(pick);
         $scope.roundActive = false;
         if($scope.draftSlot > 30){
           $scope.draftComplete = true;
