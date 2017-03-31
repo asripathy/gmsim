@@ -24,9 +24,9 @@
                 <div ng-show="roundActive == true" class="draftPos"> <span> Your draft position is: {{draftSlot}} </span> </div>
                 <div ng-repeat="pick in playerOptions" ng-show="roundActive == true">
                     <div ng-click="markSelected(pick)" class="selectable">
-                        <img src="http://www.brewoodjfc.co.uk/imageupload/silhouette_player.jpg" style="width:100%">
                         <div class="cardText">
-                            <span class="pickName"> {{pick.name}} </span>
+                            <span class="pickName"> {{pick.name}} ({{pick.type}}) </span>
+                            <img src="http://www.brewoodjfc.co.uk/imageupload/silhouette_player.jpg" style="width:100%">
                             <p> Position: {{pick.position}} </p>
                             <p> Upside: {{pick.upside}} </p>
                             <p> Risk: {{pick.risk}} </p>
