@@ -108,11 +108,11 @@ function getPlayerType(val) {
 function getDefaultPlayer(playerPosition, playerType) {
     var value = 0;
     if (playerType == "Stud")
-        value = 70;
+        value = 65;
     else if (playerType == "Role-player")
-        value = 58;
+        value = 53;
     else if (playerType == "Specialist")
-        value = 48;
+        value = 46;
     
     return {
         risk: 0,
