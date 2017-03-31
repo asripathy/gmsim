@@ -50,6 +50,7 @@ gmApp.controller('gmCtrl', function($scope) {
             if (!flexPossible) {
                 starter.type = toInsert.type;
                 starter.val = toInsert.val;
+                starter.name = toInsert.name;
                 $scope.addToTeam(dupeStarter);
             }
             else {
@@ -62,6 +63,7 @@ gmApp.controller('gmCtrl', function($scope) {
                 else {
                     starter.type = toInsert.type;
                     starter.val = toInsert.val;
+                    starter.name = toInsert.name;
                     $scope.addToTeam(dupeStarter);
                 }
             }
