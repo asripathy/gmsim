@@ -20,6 +20,64 @@ gmApp.controller('gmCtrl', function($scope) {
         $scope.startingFlex = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
         $scope.sixthMan = getDefaultPlayer(positions[Math.floor(Math.random()*4)], "Specialist");
     }
+
+    $scope.insertPlayer = function(starter, toInsert, flexPossible){
+      var added = false;
+      if(toInsert.val > starter.val){
+        added = true;
+        if(!flexPossible){
+          temp = starter;
+          starter.type = toInsert.type;
+          starter.val = toInsert.val;
+          $scope.addToTeam(temp);
+        }
+        else{
+          if($scope.startingFlex.val < starter.val){
+            temp = $scope.startingFlex;
+            $scope.startingFlex = toInsert;
+            $scope.addToTeam(temp);
+          }
+          else{
+            temp = starter;
+            starter.type = toInsert.type;
+            starter.val = toInsert.val;
+            $scope.addToTeam(temp);
+          }
+        }
+      }
+      else if(flexPossible){
+        added = true;
+        temp = $scope.startingFlex;
+        $scope.startingFlex = toInsert;
+        $scope.addToTeam(temp);
+      }
+      return added;
+    }
+
+    $scope.addToTeam = function(player){
+      var added = false;
+      var flexPossible = false;
+      if(player.val > $scope.startingFlex.val ){
+        flexPossible = true;
+      }
+      if(player.position == "Guard"){
+        added = $scope.insertPlayer($scope.startingGuard, player, flexPossible);
+      }
+      if(player.position == "Wing"){
+        added = $scope.insertPlayer($scope.startingWing, player, flexPossible);
+      }
+      if(player.position == "Forward"){
+        added = $scope.insertPlayer($scope.startingForward, player, flexPossible);
+      }
+      if(player.position == "Big"){
+        added = $scope.insertPlayer($scope.startingBig, player, flexPossible);
+      }
+      if(!added){
+        if(player.val > $scope.sixthMan.val){
+          $scope.sixthMan = player;
+        }
+      }
+    }
     $scope.initializeTeam();
 
     /*---------------------------DRAFT CODE-------------------------------*/
@@ -37,7 +95,7 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.draftActive = false;
     $scope.roundActive = false;
 
-    $scope.team = [];
+    // $scope.team = [];
 
     //Ensures valid slot offered
     $scope.validateSlot = function(){
@@ -59,7 +117,8 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.markSelected = function(pick){
       if($scope.roundActive == true){
         $scope.selectedPlayer = pick;
-        $scope.team.push(pick);
+        $scope.addToTeam(pick);
+        // $scope.team.push(pick);
         $scope.roundActive = false;
         if($scope.draftSlot > 30){
           $scope.draftComplete = true;
@@ -113,7 +172,7 @@ function getDefaultPlayer(playerPosition, playerType) {
         value = 53;
     else if (playerType == "Specialist")
         value = 46;
-    
+
     return {
         risk: 0,
         upside: value,
