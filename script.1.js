@@ -13,14 +13,16 @@ gmApp.controller('gmCtrl', function($scope) {
 
     var playerTypes = ["Stud", "Role-player", "Role-player", "Role-player", "Role-player", "Specialist"]
     $scope.initializeTeam = function(){
-        $scope.startingGuard = getDefaultPlayer("Guard", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
-        $scope.startingWing = getDefaultPlayer("Wing", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
-        $scope.startingForward = getDefaultPlayer("Forward", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
-        $scope.startingBig = getDefaultPlayer("Big", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
-        $scope.startingFlex = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
-        $scope.sixthMan = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.startingGuard = getDefaultPlayer(playerTypes.splice("Guard", Math.floor(Math.random()*playerTypes.length)));
+        $scope.startingWing = getDefaultPlayer("Wing", playerTypes.splice(Math.floor(Math.random()*playerTypes.length)));
+        $scope.startingForward = getDefaultPlayer("Forward", playerTypes.splice(Math.floor(Math.random()*playerTypes.length)));
+        $scope.startingBig = getDefaultPlayer("Big", playerTypes.splice(Math.floor(Math.random()*playerTypes.length)));
+
+        
+        
+        $scope.startingFlex = getDefaultPlayer();
+        positions[Math.floor(Math.random()*4)];
     }
-    $scope.initializeTeam();
 
     /*---------------------------DRAFT CODE-------------------------------*/
     //Draft Slot information
@@ -70,7 +72,6 @@ gmApp.controller('gmCtrl', function($scope) {
 });
 
 /*---------------------------PLAYER ATTRIBUTES CODE-------------------------------*/
-// TODO refactor player object names
 var positions = ["Guard", "Wing", "Forward", "Big"];
 
 function getPlayersAttributes(index) {
@@ -104,7 +105,7 @@ function getPlayerType(val) {
         return "Bust";
 }
 
-function getDefaultPlayer(playerPosition, playerType) {
+function getDefatultPlayer(playerPosition, playerType) {
     var value = 0;
     if (playerType == "Stud")
         value = 70;
