@@ -21,6 +21,39 @@ gmApp.controller('gmCtrl', function($scope) {
         $scope.sixthMan = getDefaultPlayer(positions[Math.floor(Math.random()*4)], "Specialist");
     }
 
+    $scope.insertPlayer = function(starter, toInsert, flexPossible){
+      var added = false;
+      if(toInsert.val > starter.val){
+        added = true;
+        if(!flexPossible){
+          temp = starter;
+          starter.type = toInsert.type;
+          starter.val = toInsert.val;
+          $scope.addToTeam(temp);
+        }
+        else{
+          if($scope.startingFlex.val < starter.val){
+            temp = $scope.startingFlex;
+            $scope.startingFlex = toInsert;
+            $scope.addToTeam(temp);
+          }
+          else{
+            temp = starter;
+            starter.type = toInsert.type;
+            starter.val = toInsert.val;
+            $scope.addToTeam(temp);
+          }
+        }
+      }
+      else if(flexPossible){
+        added = true;
+        temp = $scope.startingFlex;
+        $scope.startingFlex = toInsert;
+        $scope.addToTeam(temp);
+      }
+      return added;
+    }
+
     $scope.addToTeam = function(player){
       var added = false;
       var flexPossible = false;
@@ -28,68 +61,16 @@ gmApp.controller('gmCtrl', function($scope) {
         flexPossible = true;
       }
       if(player.position == "Guard"){
-        if(player.val > $scope.startingGuard.val){
-          added = true;
-          if(!flexPossible){
-            $scope.startingGuard = player;
-          }
-          else{
-            if($scope.startingFlex.val < $scope.startingGuard.val){
-              $scope.startingFlex = player;
-            }
-            else{
-              $scope.startingGuard = player;
-            }
-          }
-        }
+        added = $scope.insertPlayer($scope.startingGuard, player, flexPossible);
       }
       if(player.position == "Wing"){
-        if(player.val > $scope.startingWing.val){
-          added = true;
-          if(!flexPossible){
-            $scope.startingWing = player;
-          }
-          else{
-            if($scope.startingFlex.val < $scope.startingWing.val){
-              $scope.startingFlex = player;
-            }
-            else{
-              $scope.startingWing = player;
-            }
-          }
-        }
+        added = $scope.insertPlayer($scope.startingWing, player, flexPossible);
       }
       if(player.position == "Forward"){
-        if(player.val > $scope.startingForward.val){
-          added = true;
-          if(!flexPossible){
-            $scope.startingForward = player;
-          }
-          else{
-            if($scope.startingFlex.val < $scope.startingForward.val){
-              $scope.startingFlex = player;
-            }
-            else{
-              $scope.startingForward = player;
-            }
-          }
-        }
+        added = $scope.insertPlayer($scope.startingForward, player, flexPossible);
       }
       if(player.position == "Big"){
-        if(player.val > $scope.startingBig.val){
-          added = true;
-          if(!flexPossible){
-            $scope.startingBig = player;
-          }
-          else{
-            if($scope.startingFlex.val < $scope.startingBig.val){
-              $scope.startingFlex = player;
-            }
-            else{
-              $scope.startingBig = player;
-            }
-          }
-        }
+        added = $scope.insertPlayer($scope.startingBig, player, flexPossible);
       }
       if(!added){
         if(player.val > $scope.sixthMan.val){
