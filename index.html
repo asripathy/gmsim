@@ -38,12 +38,12 @@
             <button ng-show="draftComplete == true"> <span> Proceed to Team </span> </button>
         </div>
         <div class = "teamDisplay">
-          <p> Guard: {{startingGuard.type}} {{startingGuard.val}}</p>
-          <p> Wing: {{startingWing.type}} {{startingWing.val}}</p>
-          <p> Flex: {{startingFlex.type}} {{startingFlex.val}}</p>
-          <p> Forward: {{startingForward.type}} {{startingForward.val}}</p>
-          <p> Big: {{startingBig.type}} {{startingBig.val}}</p>
-          <p> 6th Man: {{sixthMan.type}} {{sixthMan.val}}</p>
+          <p> Guard: {{startingGuard.type}} {{startingGuard.val}}  <div ng-show = "updatedGuard == true"> Upgraded! </div></p>
+          <p> Wing: {{startingWing.type}} {{startingWing.val}} <div ng-show = "updatedWing == true"> Upgraded! </div></p>
+          <p> Flex: {{startingFlex.type}} {{startingFlex.val}} <div ng-show = "updatedFlex == true"> Upgraded! </div></p>
+          <p> Forward: {{startingForward.type}} {{startingForward.val}} <div ng-show = "updatedForward == true"> Upgraded! </div></p>
+          <p> Big: {{startingBig.type}} {{startingBig.val}} <div ng-show = "updatedBig == true"> Upgraded! </div></p>
+          <p> 6th Man: {{sixthMan.type}} {{sixthMan.val}} <div ng-show = "updatedSixth == true"> Upgraded! </div></p>
 
 
         </div>
