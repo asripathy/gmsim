@@ -24,7 +24,7 @@ gmApp.controller('gmCtrl', function($scope) {
 
     /*---------------------------DRAFT CODE-------------------------------*/
     //Draft Slot information
-    $scope.draftSlot = 21;
+    $scope.draftSlot = 8;
     $scope.validSlot = true;
 
     //Information on players available and selected
@@ -81,7 +81,7 @@ function getPlayersAttributes(index) {
             upside : Math.round((90 / Math.pow(index, 0.15)) + (Math.random() * 10) - 1),
             position : positions[Math.floor(Math.random()*4)]
         };
-        playerAttributes.val = getPlayersAttributes.upside - (0.25 * getPlayersAttributes.risk);
+        playerAttributes.val = playerAttributes.upside - (0.25 * playerAttributes.risk);
         playerAttributes.type = getPlayerType(playerAttributes.val);
         arr.push(playerAttributes);
         console.log(playerAttributes);
