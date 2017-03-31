@@ -44,7 +44,8 @@ gmApp.controller('gmCtrl', function($scope) {
         var dupeStarter = {
             position: starter.position,
             name: starter.name,
-            val: starter.val
+            val: starter.val,
+            type: starter.type
         };
         if (toInsert.val > starter.val) {
             if (!flexPossible) {

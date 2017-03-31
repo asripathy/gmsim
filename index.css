@@ -15,11 +15,16 @@
   font-family: sans-serif;
 }
 
+.draft {
+  width: 69%;
+  float: left;
+}
+
 .selectable {
-  width: 300px;
+  width: 20%;
   border: 25px solid #4CAF50;
   padding: 15px;
-  margin: 15px;
+  margin: 1%;
   float: left;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -38,9 +43,15 @@
 }
 
 .teamDisplay {
-  text-align: right;
+  width: 30%;
+  text-align: center;
+  float: right;
   margin-right:1%;
+  height: 100%;
+  border: 
 }
+
+
 
 .button {
     background-color: white;
