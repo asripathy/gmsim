@@ -7,7 +7,11 @@
   font-family: sans-serif;
 }
 
-#subtitle {
+body {
+  font-family: sans-serif;
+}
+
+.subtitle {
   text-align: center;
   font-weight: bold;
   font-size: 20px;
@@ -16,12 +20,12 @@
 }
 
 .draft {
-  width: 69%;
-  float: left;
+  /*width: 69%;*/
+  /*float: left;*/
 }
 
 .selectable {
-  width: 20%;
+  width: 30%;
   border: 25px solid #4CAF50;
   padding: 15px;
   margin: 1%;
@@ -29,46 +33,73 @@
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .selectable:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.pickName {
-  margin: 10px;
+.cardText {
+  padding: 5px;
   text-align: center;
-  font-weight: bold;
 }
 
-.teamDisplay {
-  width: 30%;
-  text-align: center;
-  float: right;
-  margin-right:1%;
+.pickName {
+  font-weight: bold;
+}
+.panel{
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 5px;
+  border-color: #59CC59;
   height: 100%;
-  border: 
+}
+
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #59CC59;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+
+.label{
+  border-radius: 5px;
+  background-color: #59CC59;
+
+}
+.panelText {
+  margin-left: 5px;
 }
 
 
 
 .button {
-    background-color: white;
-    border: none;
-    color: #4CAF50;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 2px solid #4CAF50;
-    -webkit-transition-duration: 0.4s;
+  background-color: white;
+  border: none;
+  color: #4CAF50;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 2px solid #4CAF50;
+  -webkit-transition-duration: 0.4s;
 }
 
 .button:hover {
-    background-color: #4CAF50; /* Green */
-    color: white;
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.draftPos {
+  font-family: Gill Sans, Verdana;
+
+  line-height: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
