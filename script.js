@@ -11,8 +11,14 @@ gmApp.controller('gmCtrl', function($scope) {
     $scope.startingBig;
     $scope.sixthMan;
 
+    var playerTypes = ["Stud", "Role-player", "Role-player", "Role-player", "Role-player", "Specialist"]
     $scope.initializeTeam = function(){
-
+        $scope.startingGuard = getDefaultPlayer("Guard", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.startingWing = getDefaultPlayer("Wing", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.startingForward = getDefaultPlayer("Forward", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.startingBig = getDefaultPlayer("Big", playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.startingFlex = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
+        $scope.sixthMan = getDefaultPlayer(positions[Math.floor(Math.random()*4)], playerTypes.splice(Math.floor(Math.random()*playerTypes.length), 1)[0]);
     }
 
     $scope.addToTeam = function(player){
@@ -91,10 +97,11 @@ gmApp.controller('gmCtrl', function($scope) {
         }
       }
     }
+    $scope.initializeTeam();
 
     /*---------------------------DRAFT CODE-------------------------------*/
     //Draft Slot information
-    $scope.draftSlot = 21;
+    $scope.draftSlot = 8;
     $scope.validSlot = true;
 
     //Information on players available and selected
@@ -141,6 +148,7 @@ gmApp.controller('gmCtrl', function($scope) {
 });
 
 /*---------------------------PLAYER ATTRIBUTES CODE-------------------------------*/
+// TODO refactor player object names
 var positions = ["Guard", "Wing", "Forward", "Big"];
 
 function getPlayersAttributes(index) {
@@ -151,7 +159,7 @@ function getPlayersAttributes(index) {
             upside : Math.round((90 / Math.pow(index, 0.15)) + (Math.random() * 10) - 1),
             position : positions[Math.floor(Math.random()*4)]
         };
-        playerAttributes.val = getPlayersAttributes.upside - (0.25 * getPlayersAttributes.risk);
+        playerAttributes.val = playerAttributes.upside - (0.25 * playerAttributes.risk);
         playerAttributes.type = getPlayerType(playerAttributes.val);
         arr.push(playerAttributes);
         console.log(playerAttributes);
@@ -172,4 +180,22 @@ function getPlayerType(val) {
         return "Specialist";
     else
         return "Bust";
+}
+
+function getDefaultPlayer(playerPosition, playerType) {
+    var value = 0;
+    if (playerType == "Stud")
+        value = 70;
+    else if (playerType == "Role-player")
+        value = 58;
+    else if (playerType == "Specialist")
+        value = 48;
+
+    return {
+        risk: 0,
+        upside: value,
+        val: value,
+        type: playerType,
+        position: playerPosition
+    }
 }
