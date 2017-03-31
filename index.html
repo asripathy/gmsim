@@ -8,7 +8,7 @@
     <div ng-app="gmsim" ng-controller="gmCtrl">
         <div class="draft">
             <div class="draftContainer" ng-show="draftComplete == false">
-                <div ng-show="draftActive == false">
+                <div ng-show="draftActive == false" style="text-align: center">
                     <p id="title"> Welcome to the {{year}} NBA Draft</p>
                     <p id="subtitle"> You own the #{{draftSlot}} and #{{draftSlot + 30}} overall picks in the draft. </p>
                     <!-- <form name="slotSelect">
@@ -18,13 +18,13 @@
                     <!-- <div ng-show="validSlot == false">
                     <p> Please enter a valid slot (1-30) </p>
                 </div> -->
-                    <button ng-show="validSlot == true" ng-click="generatePicks(draftSlot)"> <span> Start Draft </span> </button>
+                    <button ng-show="validSlot == true" ng-click="generatePicks(draftSlot)" class="button"> <span> Start Draft </span> </button>
                 </div>
                 <button ng-show="draftActive == true && roundActive == false" ng-click="generatePicks( draftSlot + 30)"> <span> Proceed to Next Round </span> </button>
                 <div ng-show="roundActive == true"> <span> Your draft position is: {{draftSlot}} </span> </div>
                 <div ng-repeat="pick in playerOptions" ng-show="roundActive == true">
                     <div ng-click="markSelected(pick)" class="selectable">
-                        <span> Possible Draft Pick </span>
+                        <span class="pickName"> {{pick.name}} </span>
                         <p> Position: {{pick.position}} </p>
                         <p> Risk: {{pick.risk}} </p>
                         <p> Upside: {{pick.upside}} </p>
