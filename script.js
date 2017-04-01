@@ -178,6 +178,7 @@ function getPlayersAttributes(index) {
         };
         playerAttributes.val = playerAttributes.upside - (0.25 * playerAttributes.risk);
         playerAttributes.type = getPlayerType(playerAttributes.val);
+        playerAttributes.img = getImg(playerAttributes.position);
         arr.push(playerAttributes);
         // console.log(playerAttributes);
     }
@@ -214,8 +215,21 @@ function getDefaultPlayer(playerPosition, playerType) {
         val: value,
         type: playerType,
         position: playerPosition,
-        name: names[Math.floor(Math.random() * names.length)] + ' ' + names[Math.floor(Math.random() * names.length)]
+        name: names[Math.floor(Math.random() * names.length)] + ' ' + names[Math.floor(Math.random() * names.length)],
+        img: getImg(playerPosition)
     }
+}
+
+function getImg(position) {
+    if (position == "Guard")
+        return "https://s-media-cache-ak0.pinimg.com/originals/a2/d7/73/a2d77307e3bfe1dab12b2cf4f8e79679.png";
+    else if (position == "Wing")
+        return "https://img.clipartfox.com/acd80916d4e1aba13957ed82b1e35e60_clipartbest-com-nba-best-players-clipart_1296-1296.jpeg";
+    else if (position == "Forward")
+        // return "https://images.vexels.com/media/users/3/129336/isolated/preview/44854330cf32934de073e6f908e1ba99-basketball-player-silhouette-1-by-vexels.png";
+        return "http://images.clipartpanda.com/slam-clipart-0basketball-pictures-clip-art-i5.jpg";
+    else
+        return "https://img.clipartfox.com/1631cd968daf17d244ee43a755964649_basketball-silhouette-clipart-nba-best-players-clipart_512-512.jpeg";
 }
 
 
