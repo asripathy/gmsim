@@ -145,7 +145,7 @@ gmApp.controller('gmCtrl', function($scope) {
         $scope.draftActive = true;
         $scope.roundActive = true;
         $scope.draftSlot = draftSlot;
-        $scope.playerOptions = getPlayersAttributes($scope.draftSlot);
+        $scope.playerOptions = getPlayersAttributes($scope.draftSlot, $scope.year);
     }
 
     //Performs the actual selection
@@ -167,14 +167,15 @@ gmApp.controller('gmCtrl', function($scope) {
 // TODO refactor player object names
 var positions = ["Guard", "Wing", "Forward", "Big"];
 
-function getPlayersAttributes(index) {
+function getPlayersAttributes(index, curYear) {
     arr = [];
     for (var i = 1; i <= 3; i++) {
         playerAttributes = {
             risk: Math.round(Math.random() * 50),
             upside: Math.round((90 / Math.pow(index, 0.15)) + (Math.random() * 10) - 1),
             position: positions[Math.floor(Math.random() * 4)],
-            name: names[Math.floor(Math.random() * names.length)] + ' ' + names[Math.floor(Math.random() * names.length)]
+            name: names[Math.floor(Math.random() * names.length)] + ' ' + names[Math.floor(Math.random() * names.length)],
+            year: curYear
         };
         playerAttributes.val = playerAttributes.upside - (0.25 * playerAttributes.risk);
         playerAttributes.type = getPlayerType(playerAttributes.val);
@@ -216,7 +217,8 @@ function getDefaultPlayer(playerPosition, playerType) {
         type: playerType,
         position: playerPosition,
         name: names[Math.floor(Math.random() * names.length)] + ' ' + names[Math.floor(Math.random() * names.length)],
-        img: getImg(playerPosition)
+        img: getImg(playerPosition),
+        year: 2010 + Math.floor(Math.random()*6)
     }
 }
 
