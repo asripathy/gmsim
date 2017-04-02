@@ -29,6 +29,24 @@ gmApp.controller('gmCtrl', function($scope) {
         $scope.updatedSixth = false;
     }
 
+    $scope.getRating = function(val){
+      var arr = new Array(4);
+      console.log(arr);
+      if(val == "Superstar"){
+        return new Array(5);
+      }
+      else if(val == "Star"){
+        return new Array(4);
+      }
+      else if(val == "Stud"){
+        return new Array(3);
+      }
+      else if(val == "Role-player"){
+        return new Array(2);
+      }
+      return new Array(1);
+    }
+
 
     var playerTypes = ["Stud", "Role-player", "Role-player", "Role-player", "Role-player"];
     $scope.initializeTeam = function() {

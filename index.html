@@ -8,8 +8,8 @@
 
 <body>
 
-    <div ng-app="gmsim" ng-controller="gmCtrl" class = "row">
-        <div class="draft col-md-7">
+    <div ng-app="gmsim" ng-controller="gmCtrl" class="row">
+        <div class="draft col-md-8">
             <div class="draftContainer" ng-show="draftComplete == false">
                 <div ng-show="draftActive == false" style="text-align: center">
                     <p id="title"> Welcome to the {{year}} NBA Draft</p>
@@ -27,9 +27,9 @@
                 <div ng-show="roundActive == true" class="subtitle"> <span> Your draft position is: {{draftSlot}} </span> </div>
                 <div ng-repeat="pick in playerOptions" ng-show="roundActive == true">
                     <div ng-click="markSelected(pick)" class="selectable">
-                        <img src="http://www.brewoodjfc.co.uk/imageupload/silhouette_player.jpg" style="width:100%">
                         <div class="cardText">
-                            <span class="pickName"> {{pick.name}} </span>
+                            <span class="pickName"> {{pick.name}} ({{pick.type}}) </span>
+                            <img src="http://www.brewoodjfc.co.uk/imageupload/silhouette_player.jpg" style="width:100%">
                             <p> Position: {{pick.position}} </p>
                             <p> Upside: {{pick.upside}} </p>
                             <p> Risk: {{pick.risk}} </p>
@@ -43,18 +43,99 @@
             </div>
             <button ng-show="draftComplete == true"> <span> Proceed to Team </span> </button>
         </div>
-        <div class = "teamDisplay col-md-5 panel panel-primary">
-          <div class = "panel-heading text-center"> Current Team </div>
-          <h3 class = "text-center"><span class = "label label-primary"> Guard </span></h3><div class = "panelText"> Name: {{startingGuard.name}} Role: {{startingGuard.type}} Rating: {{startingGuard.val}} </div> <div ng-show = "updatedGuard == true"> <span class="glyphicon glyphicon-star" aria-hidden="true"></span> </div>
-          <h3 class = "text-center"><span class = "label label-primary"> Wing </span></h3><div class = "panelText"> Name: {{startingWing.name}} Role: {{startingWing.type}} Rating: {{startingWing.val}} </div><div ng-show = "updatedWing == true"> Upgraded! </div>
-          <h3 class = "text-center"><span class = "label label-primary"> Flex </span></h3><div class = "panelText"> Name: {{startingFlex.name}} Role: {{startingFlex.type}} Rating: {{startingFlex.val}}</div> <div ng-show = "updatedFlex == true"> Upgraded! </div>
-          <h3 class = "text-center"><span class = "label label-primary"> Forward </span></h3><div class = "panelText"> Name: {{startingForward.name}} Role: {{startingForward.type}} Rating: {{startingForward.val}}</div> <div ng-show = "updatedForward == true"> Upgraded! </div>
-          <h3 class = "text-center"><span class = "label label-primary"> Big </span></h3><div class = "panelText"> Name: {{startingBig.name}} Role: {{startingBig.type}} Rating: {{startingBig.val}}</div> <div ng-show = "updatedBig == true"> Upgraded! </div>
-          <h3 class = "text-center"><span class = "label label-primary"> 6th Man </span></h3><div class = "panelText"> Name: {{sixthMan.name}} Role: {{sixthMan.type}} Rating: {{sixthMan.val}}</div> <div ng-show = "updatedSixth == true"> Upgraded! </div>
+        <div class="teamDisplay col-md-4 panel panel-primary">
+            <div class="panel-heading text-center"> Current Team </div>
+            <div class="panel-body fixed-panel">
+                <div class="row playerProfile">
+                    <div class="col-md-2">
+                        <h3><br><span class = "label label-primary"> Guard </span></h3></div>
+                    <div class="col-md-4 playerPicture">
+                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                        <span>{{startingGuard.name}}</span>
+                    </div>
+                    <div class="panelText col-md-5 playerStats">
+                        Role: {{startingGuard.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        <span ng-repeat="i in getRating(startingGuard.type) track by $index">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </span>
 
+                    </div>
+                </div>
+                <div class="row playerProfile">
+                    <div class="col-md-2">
+                        <h3><br><span class = "label label-primary"> Wing </span></h3></div>
+                    <div class="col-md-4 playerPicture">
+                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                        <span>{{startingWing.name}}</span>
+                    </div>
+                    <div class="panelText col-md-5 playerStats">
+                        Role: {{startingWing.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        <span ng-repeat="i in getRating(startingWing.type) track by $index">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </span>
 
+                    </div>
+                </div>
+                <div class="row playerProfile">
+                    <div class="col-md-2">
+                        <h3><br><span class = "label label-primary"> Flex </span></h3></div>
+                    <div class="col-md-4 playerPicture">
+                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                        <span>{{startingFlex.name}}</span>
+                    </div>
+                    <div class="panelText col-md-5 playerStats">
+                        Role: {{startingFlex.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        <span ng-repeat="i in getRating(startingFlex.type) track by $index">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="row playerProfile">
+                    <div class="col-md-2">
+                        <h3><br><span class = "label label-primary"> Forward </span></h3></div>
+                    <div class="col-md-4 playerPicture">
+                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                        <span>{{startingForward.name}}</span>
+                    </div>
+                    <div class="panelText col-md-5 playerStats">
+                        Role: {{startingForward.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        <span ng-repeat="i in getRating(startingForward.type) track by $index">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </span>
+
+                    </div>
+                </div>
+                <div class="row playerProfile">
+                    <div class="col-md-2">
+                        <h3><br><span class = "label label-primary"> Big </span></h3></div>
+                    <div class="col-md-4 playerPicture">
+                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                        <span>{{startingBig.name}}</span>
+                    </div>
+                    <div class="panelText col-md-5 playerStats">
+                        Role: {{startingBig.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        <span ng-repeat="i in getRating(startingBig.type) track by $index">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row playerProfile">
+                    <div class="col-md-2">
+                        <h3><br><span class = "label label-primary"> 6th Man </span></h3></div>
+                    <div class="col-md-4 playerPicture">
+                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                        <span>{{sixthMan.name}}</span>
+                    </div>
+                    <div class="panelText col-md-5 playerStats">
+                        Role: {{sixthMan.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        <span ng-repeat="i in getRating(sixthMan.type) track by $index">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
 
     <script src="script.js"></script>

@@ -5,10 +5,13 @@
   font-size: 30px;
   text-decoration-style: solid;
   font-family: sans-serif;
+  margin-top: 10px;
 }
 
 body {
   font-family: sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .subtitle {
@@ -26,9 +29,13 @@ body {
 
 .selectable {
   width: 30%;
-  border: 25px solid #4CAF50;
-  padding: 15px;
-  margin: 1%;
+  border: 15px solid #4CAF50;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(white));
+  background-image: -webkit-linear-gradient(top, lightgray, end-color);
+  background-image: -moz-linear-gradient(top, lightgray, end-color);
+  background-image: linear-gradient(to bottom, lightgray, end-color);
+  padding: 1px;
+  margin: 5px;
   float: left;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -47,13 +54,15 @@ body {
 
 .pickName {
   font-weight: bold;
+  font-size: 18px;
 }
 .panel{
   padding-left: 0px;
   padding-right: 0px;
   border-radius: 5px;
   border-color: #59CC59;
-  height: 100%;
+  height: 100vh;
+  margin-bottom: 0px;
 }
 
 .panel > .panel-heading {
@@ -67,10 +76,28 @@ body {
 .label{
   border-radius: 5px;
   background-color: #59CC59;
-
 }
 .panelText {
   margin-left: 5px;
+}
+
+.playerProfile {
+  text-align: center;
+  margin-left: 5%;
+  padding-top: 3%;
+}
+.playerPicture {
+  margin-left: 7%;
+}
+.playerStats {
+  text-align: left;
+  padding-right: 5%;
+  margin-top: 8px;
+}
+
+.fixed-panel {
+  height: 90vh;
+  overflow: scroll;
 }
 
 
@@ -87,17 +114,20 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border: 2px solid #4CAF50;
+  border-radius: 5px;
   -webkit-transition-duration: 0.4s;
 }
 
 .button:hover {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   color: white;
 }
 
 .draftPos {
-  font-family: Gill Sans, Verdana;
-
+  font-family: sans-serif;
+  font-size: 20px;
+  /*text-align: center;*/
+  margin-bottom: 1%;
   line-height: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;
