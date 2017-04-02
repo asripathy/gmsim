@@ -14,21 +14,19 @@
                 <div ng-show="draftActive == false" style="text-align: center">
                     <p id="title"> Welcome to the {{year}} NBA Draft</p>
                     <p class="subtitle"> You own the #{{draftSlot}} and #{{draftSlot + 30}} overall picks in the draft. </p>
-                    <!-- <form name="slotSelect">
-                    <p> Choose Draft Slot </p>
-                    <input name="slotChoice" type="number" min="0" max="30" ng-model="draftSlot" ng-change="validateSlot()" required></input>
-                </form> -->
-                    <!-- <div ng-show="validSlot == false">
-                    <p> Please enter a valid slot (1-30) </p>
-                </div> -->
                     <button ng-show="validSlot == true" ng-click="generatePicks(draftSlot)" class="button"> <span> Start Draft </span> </button>
                 </div>
-                <button ng-show="draftActive == true && roundActive == false" ng-click="generatePicks( draftSlot + 30)"> <span> Proceed to Next Round </span> </button>
-                <div ng-show="roundActive == true" class="subtitle"> <span> Your draft position is: {{draftSlot}} </span> </div>
-                <div ng-repeat="pick in playerOptions" ng-show="roundActive == true">
+                <div class="intermediate" ng-show="draftActive == true && roundActive == false">
+                    <p class="subtitle" style="padding-top:20%"> Congratulations! You have successfully added a {{selectedPlayer.type}} to the lineup. </p>
+                    <button ng-click="generatePicks( draftSlot + 30)" class="button"> <span> Proceed to Next Round </span> </button>
+                </div>
+
+
+                <div ng-show="roundActive == true" class="subtitle" style="margin-top:5%"> <span> With the #{{draftSlot}} overall pick you select: </span> </div>
+                <div ng-repeat="pick in playerOptions" ng-show="roundActive == true" class = "picks">
                     <div ng-click="markSelected(pick)" class="selectable">
                         <div class="cardText">
-                            <span class="pickName"> {{pick.name}} ({{pick.type}}) </span>
+                            <span class="pickName"> {{pick.name}} </span>
                             <img src={{pick.img}} style="width:100%">
                             <p> Position: {{pick.position}} </p>
                             <p> Upside: {{pick.upside}} </p>
@@ -37,11 +35,10 @@
                     </div>
                 </div>
             </div>
-            <div ng-show="draftActive == true && roundActive == false">
-                <p> You have selected: </p>
-                <p> {{selectedPlayer.type}} </p>
+            <div class="intermediate" ng-show="draftComplete == true">
+              <p class="subtitle" style="padding-top:20%"> Congratulations! You have successfully added a {{selectedPlayer.type}} to the lineup. </p>
+              <button class="button"> <span> Proceed to Offseason </span> </button>
             </div>
-            <button ng-show="draftComplete == true"> <span> Proceed to Team </span> </button>
         </div>
         <div class="teamDisplay col-md-4 panel panel-primary">
             <div class="panel-heading text-center"> Current Team </div>
@@ -49,12 +46,12 @@
                 <div class="row playerProfile">
                     <div class="col-md-2">
                         <h3><br><span class = "label label-primary"> Guard </span></h3></div>
-                    <div class="col-md-4 playerPicture">
-                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                    <div class="col-md-3 playerPicture">
+                        <img src="{{startingGuard.img}}" style="width:100px;height:100px;"> <br>
                         <span>{{startingGuard.name}}</span>
                     </div>
                     <div class="panelText col-md-5 playerStats">
-                        Role: {{startingGuard.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        Role: {{startingGuard.type}} <br><br> Years Experience: {{2017 - startingGuard.year}} <br><br> Rating:
                         <span ng-repeat="i in getRating(startingGuard.type) track by $index">
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </span>
@@ -64,12 +61,12 @@
                 <div class="row playerProfile">
                     <div class="col-md-2">
                         <h3><br><span class = "label label-primary"> Wing </span></h3></div>
-                    <div class="col-md-4 playerPicture">
-                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                    <div class="col-md-3 playerPicture">
+                        <img src="{{startingWing.img}}" style="width:100px;height:100px;"> <br>
                         <span>{{startingWing.name}}</span>
                     </div>
                     <div class="panelText col-md-5 playerStats">
-                        Role: {{startingWing.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        Role: {{startingWing.type}} <br><br> Years Experience: {{2017 - startingWing.year}} <br><br> Rating:
                         <span ng-repeat="i in getRating(startingWing.type) track by $index">
                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </span>
@@ -79,12 +76,12 @@
                 <div class="row playerProfile">
                     <div class="col-md-2">
                         <h3><br><span class = "label label-primary"> Flex </span></h3></div>
-                    <div class="col-md-4 playerPicture">
-                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                    <div class="col-md-3 playerPicture">
+                        <img src="{{startingFlex.img}}" style="width:100px;height:100px;"> <br>
                         <span>{{startingFlex.name}}</span>
                     </div>
                     <div class="panelText col-md-5 playerStats">
-                        Role: {{startingFlex.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        Role: {{startingFlex.type}} <br><br> Years Experience: {{2017 - startingFlex.year}} <br><br> Rating:
                         <span ng-repeat="i in getRating(startingFlex.type) track by $index">
               <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </span>
@@ -94,12 +91,12 @@
                 <div class="row playerProfile">
                     <div class="col-md-2">
                         <h3><br><span class = "label label-primary"> Forward </span></h3></div>
-                    <div class="col-md-4 playerPicture">
-                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                    <div class="col-md-3 playerPicture">
+                        <img src="{{startingForward.img}}" style="width:100px;height:100px;"> <br>
                         <span>{{startingForward.name}}</span>
                     </div>
                     <div class="panelText col-md-5 playerStats">
-                        Role: {{startingForward.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        Role: {{startingForward.type}} <br><br> Years Experience: {{2017 - startingForward.year}} <br><br> Rating:
                         <span ng-repeat="i in getRating(startingForward.type) track by $index">
             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </span>
@@ -109,12 +106,12 @@
                 <div class="row playerProfile">
                     <div class="col-md-2">
                         <h3><br><span class = "label label-primary"> Big </span></h3></div>
-                    <div class="col-md-4 playerPicture">
-                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                    <div class="col-md-3 playerPicture">
+                        <img src="{{startingBig.img}}" style="width:100px;height:100px;"> <br>
                         <span>{{startingBig.name}}</span>
                     </div>
                     <div class="panelText col-md-5 playerStats">
-                        Role: {{startingBig.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        Role: {{startingBig.type}} <br><br> Years Experience: {{2017 - startingBig.year}} <br><br> Rating:
                         <span ng-repeat="i in getRating(startingBig.type) track by $index">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </span>
@@ -123,12 +120,12 @@
                 <div class="row playerProfile">
                     <div class="col-md-2">
                         <h3><br><span class = "label label-primary"> 6th Man </span></h3></div>
-                    <div class="col-md-4 playerPicture">
-                        <img src="http://clipart-library.com/images/gTe5X6gEc.png" style="width:80px;height:100px;"> <br>
+                    <div class="col-md-3 playerPicture">
+                        <img src="{{sixthMan.img}}" style="width:100px;height:100px;"> <br>
                         <span>{{sixthMan.name}}</span>
                     </div>
                     <div class="panelText col-md-5 playerStats">
-                        Role: {{sixthMan.type}} <br><br> Years Experience: {{year - 2017}} <br><br> Rating:
+                        Role: {{sixthMan.type}} <br><br> Years Experience: {{2017 - sixthMan.year}} <br><br> Rating:
                         <span ng-repeat="i in getRating(sixthMan.type) track by $index">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </span>

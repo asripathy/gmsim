@@ -31,7 +31,6 @@ gmApp.controller('gmCtrl', function($scope) {
 
     $scope.getRating = function(val){
       var arr = new Array(4);
-      console.log(arr);
       if(val == "Superstar"){
         return new Array(5);
       }
@@ -63,13 +62,17 @@ gmApp.controller('gmCtrl', function($scope) {
             position: starter.position,
             name: starter.name,
             val: starter.val,
-            type: starter.type
+            type: starter.type,
+            year: starter.year,
+            img: starter.img
         };
         if (toInsert.val > starter.val) {
             if (!flexPossible) {
                 starter.type = toInsert.type;
                 starter.val = toInsert.val;
                 starter.name = toInsert.name;
+                starter.year = toInsert.year;
+                starter.img = toInsert.img
                 $scope.addToTeam(dupeStarter);
             }
             else {
@@ -83,6 +86,8 @@ gmApp.controller('gmCtrl', function($scope) {
                     starter.type = toInsert.type;
                     starter.val = toInsert.val;
                     starter.name = toInsert.name;
+                    starter.year = toInsert.year;
+                    starter.img = toInsert.img
                     $scope.addToTeam(dupeStarter);
                 }
             }
@@ -99,8 +104,6 @@ gmApp.controller('gmCtrl', function($scope) {
     }
 
     $scope.addToTeam = function(player) {
-        console.log("trying to add to team mofo");
-        console.log(player);
         var added = false;
         var flexPossible = false;
         if (player.val > $scope.startingFlex.val) {
@@ -200,7 +203,6 @@ function getPlayersAttributes(index, curYear) {
         playerAttributes.type = getPlayerType(playerAttributes.val);
         playerAttributes.img = getImg(playerAttributes.position);
         arr.push(playerAttributes);
-        // console.log(playerAttributes);
     }
     return arr;
 }
